@@ -1,0 +1,17 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-color);
+    color: var(--text-color);
+}
+
+main {
+    flex: 1;
+    padding: 2rem;
+}

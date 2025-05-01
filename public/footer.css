@@ -1,0 +1,22 @@
+footer {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.1);
+    background-color: #286476;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #cccccc;
+}
