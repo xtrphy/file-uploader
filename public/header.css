@@ -71,7 +71,7 @@ nav {
 }
 
 .links a,
-.upload-form,
+.new-file,
 .open-modal-btn {
     border: none;
     background-color: var(--button-color);
@@ -83,11 +83,6 @@ nav {
     text-decoration: none;
     transition: color 0.3s ease;
     cursor: pointer;
-}
-
-.new-file {
-    cursor: pointer;
-    transition: color 0.3s ease;
 }
 
 .new-file:hover {
