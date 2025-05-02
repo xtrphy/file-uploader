@@ -7,11 +7,122 @@ body {
 body {
     display: flex;
     flex-direction: column;
-    background-color: var(--main-color);
-    color: var(--text-color);
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #85a2ff, #537bfb);
+}
+
+.window {
+    width: 100%;
+    max-width: 1400px;
+    height: 90vh;
+    background: white;
+    border-radius: 2rem;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     flex: 1;
     padding: 2rem;
+}
+
+.upload-file-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 900;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-form input[type="file"] {
+    display: none;
+}
+
+.upload-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    color: black;
+    background-color: #e6e6e6;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-circle:hover {
+    background-color: #d6d6d6;
+}
+
+.upload-form button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.upload-form button:hover {
+    background-color: #555;
+}
+
+.get-started {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.get-started span {
+    text-decoration: underline;
+}
+
+.get-started a {
+    margin-top: 1rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+    border-radius: 1rem;
+    padding: 0.9rem 3rem;
+    background-color: #537bfe;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease, background 0.3s ease;
+}
+
+.get-started a:hover {
+    background-color: #4566d3;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-align: center;
+    width: 600px;
 }

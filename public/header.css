@@ -2,9 +2,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-    background-color: #286476;
+    height: 40px;
 }
 
 .container {
@@ -29,14 +27,15 @@ nav {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: white;
+    font-size: 1.15rem;
     font-weight: 500;
+    color: black;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .right a:hover {
-    color: lightgray;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .right i {
@@ -50,23 +49,19 @@ nav {
     color: black;
 }
 
-.right button {
-    border: none;
-    background: transparent;
-}
-
 .logo {
     display: flex;
     align-items: center;
-    font-size: 2rem;
+    font-size: 2.25rem;
+    font-weight: 600;
     gap: 8px;
-    color: white;
     text-decoration: none;
     transition: color 0.3s ease;
+    color: black;
 }
 
 .logo:hover {
-    color: #cccccc;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .links {
@@ -75,16 +70,47 @@ nav {
     gap: 1.5rem;
 }
 
-.links a {
+.links a,
+.upload-form,
+button {
+    border: none;
     background-color: var(--button-color);
     padding: 0.5rem 0.925rem;
-    border-radius: 5px;
+    border-radius: 1rem;
     color: black;
+    font-size: 1.15rem;
     font-weight: 500;
     text-decoration: none;
     transition: color 0.3s ease;
+    cursor: pointer;
 }
 
-.links a:hover {
-    color: #666;
+.new-file {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.new-file:hover {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.links a:hover,
+button:hover {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.log-out-btn {
+    border: none;
+    font-size: 1.25rem;
+    text-decoration: none;
+    border-radius: 1rem;
+    padding: 0.5rem 0.925rem;
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.log-out-btn:hover {
+    color: rgba(0, 0, 0, 0.5);
 }

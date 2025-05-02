@@ -3,18 +3,28 @@
         <div class="left">
             <a href="/" class="logo">
                 <i class="fa-solid fa-suitcase"></i>
-                <div>Vaultix</div>
+                <div>VLTX</div>
             </a>
-            <div class="links">
-                <a href="/files">My Files</a>
-                <a href="/upload">Upload</a>
-            </div>
+            <% if (isAuthenticated) { %>
+                <div class="links">
+                    <form class="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+                        <label for="file-input" class="new-file">New File</label>
+                        <input id="file-input" type="file" name="uploaded_file" required />
+                    </form>
+                    <button class="open-modal-btn">New Folder</button>
+                </div>
+                <% } %>
         </div>
         <div class="right">
-            <a href="/profile">
-                <i class="fa-solid fa-user"></i>
-                <%= name %>
-            </a>
+            <% if (isAuthenticated) { %>
+                <form action="/log-out" method="post">
+                    <button class="log-out-btn" type="submit">Log out</button>
+                </form>
+                <% } else { %>
+                    <a href="/login">
+                        Log In
+                    </a>
+                    <% } %>
         </div>
     </div>
 </nav>

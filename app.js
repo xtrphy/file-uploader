@@ -1,48 +1,93 @@
 const path = require('node:path');
 const express = require('express');
 const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs')
 const { PrismaClient } = require('@prisma/client');
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
+const prisma = require('./prisma/client');
 require('dotenv').config();
+
+const authRouter = require('./routes/authRouter');
+const uploadRouter = require('./routes/uploadRouter');
+const folderRouter = require('./routes/folderRouter');
+
 
 // Set up
 const app = express();
 
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
-const prisma = new PrismaClient();
 
-// TODO: Log In, Registration, Log Out using Prisma Session Store
 
+// Authentication Set Up
 app.use(
     session({
         cookie: {
             maxAge: 7 * 24 * 60 * 60 * 1000
         },
         secret: process.env.SECRET,
-        resave: true,
-        saveUninitialized: true,
-        store: new PrismaSessionStore(
-            new PrismaClient(),
-            {
-                checkPeriod: 2 * 60 * 1000,
-                dbRecordIdIsSessionId: true,
-                dbRecordIdFunction: undefined,
-            }
-        )
+        resave: false,
+        saveUninitialized: false,
+        store: new PrismaSessionStore(prisma, {
+            checkPeriod: 2 * 60 * 1000,
+            dbRecordIdIsSessionId: true,
+            dbRecordIdFunction: undefined,
+        }),
     })
 );
 
-// Routes
+passport.use(
+    new LocalStrategy(async (username, password, done) => {
+        try {
+            const user = await prisma.user.findUnique({ where: { username } });
+            if (!user) return done(null, false, { message: 'User not found' });
 
-app.get('/', (req, res) => {
-    res.render('index', { title: 'Vaultix', name: 'Xtrphy' });
+            const isValid = await bcrypt.compare(password, user.passwordHash);
+            if (!isValid) return done(null, false, { message: 'Wrong password' });
+
+            return done(null, user);
+        } catch (err) {
+            return done(err);
+        }
+    })
+);
+
+passport.serializeUser((user, done) => {
+    done(null, user.id);
 });
 
-app.get('/register', registerRouter(prisma));
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await prisma.user.findUnique({ where: { id } });
+        done(null, user);
+    } catch (err) {
+        done(err);
+    }
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+// Routes
+app.get('/', (req, res) => {
+    res.redirect('/dashboard');
+});
+
+app.get('/dashboard', (req, res) => {
+    res.render('index', { isAuthenticated: req.isAuthenticated() });
+});
+
+app.use('/', authRouter);
+
+app.use('/upload', uploadRouter);
+
+app.use('/folder', folderRouter);
+
 
 // Start
 const PORT = process.env.PORT;

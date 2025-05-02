@@ -1,0 +1,110 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #85a2ff, #537bfb);
+    font-family: 'Inter', sans-serif;
+}
+
+.auth-container {
+    background: white;
+    padding: 2.5rem 3rem;
+    border-radius: 2rem;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-container h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-align: center;
+    color: black;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #537bfb;
+    box-shadow: 0 0 0 3px rgba(83, 123, 251, 0.3);
+}
+
+.auth-button {
+    width: 100%;
+    padding: 0.9rem;
+    background-color: #FCE5CC;
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+}
+
+.auth-link {
+    margin-top: 2.5rem;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+.cancel {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    color: black;
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.cancel:hover {
+    background-color: #dbdbdb
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/auth.css">
+    <title>
+        <%= path==='/login' ? 'Log In' : 'Sign Up' %>
+    </title>
+</head>
+
+<body>
+    <a class="cancel" href="/dashboard"><i class="fa-solid fa-xmark"></i></a>
+
+    <% if (path==='/login' ) { %>
+        <form class="auth-container" method="POST" action="/login">
+            <h2>Log In</h2>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required />
+            </div>
+            <button type="submit" class="auth-button">OK</button>
+            <a class="auth-link" href="/sign-up">Don't have an account?</a>
+        </form>
+        <% } else { %>
+            <form class="auth-container" method="POST" action="/sign-up">
+                <h2>Sign Up</h2>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" required />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" required />
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm password</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" required />
+                </div>
+                <button type="submit" class="auth-button">Sign Up</button>
+                <a class="auth-link" href="/login">Already have an account?</a>
+            </form>
+            <% } %>
+
+                <script src="https://kit.fontawesome.com/3130acdd01.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

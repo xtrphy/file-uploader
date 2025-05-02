@@ -8,22 +8,45 @@
     <link rel="stylesheet" href="/header.css">
     <link rel="stylesheet" href="/footer.css">
     <link rel="stylesheet" href="/index.css">
-    <title>
-        <%= title %>
-    </title>
+    <title>Vaultix</title>
 </head>
 
 <body>
-    <%- include ('./partials/header') %>
-        <main>
-            <h1>
-                Upload your first file!
-            </h1>
-        </main>
+    <div class="window">
+        <%- include ('./partials/header') %>
+            <main>
+                <% if (isAuthenticated) { %>
+                    <h1 class="upload-file-title">
+                        Upload your first file!
+                    </h1>
 
-        <%- include ('./partials/footer') %>
+                    <div class="modal" id="folderModal">
+                        <div class="modal-content">
+                            <span class="close-btn">&times;</span>
+                            <form class="create-folder-form" action="/create-folder" method="POST">
+                                <h2>Create a Folder</h2>
+                                <input type="text" name="folderName" placeholder="Folder name" required />
+                                <button type="submit">Create Folder</button>
+                            </form>
+                        </div>
+                    </div>
 
-            <script src="https://kit.fontawesome.com/3130acdd01.js" crossorigin="anonymous"></script>
+                    <% } else { %>
+                        <div class="get-started">
+                            <h1 class="title">The most <span>secure</span> data keeper</h1>
+                            <p class="subtitle">With Vaultix, users can securely upload, view and manage their files in
+                                an intuitive
+                                interface.</p>
+                            <a href="/login">Get started for free &rarr;</a>
+                        </div>
+                        <% } %>
+            </main>
+
+            <%- include ('./partials/footer') %>
+    </div>
+
+    <script src="/js/index.js"></script>
+    <script src="https://kit.fontawesome.com/3130acdd01.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
