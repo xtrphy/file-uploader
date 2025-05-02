@@ -9,6 +9,7 @@ const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 const prisma = require('./prisma/client');
 require('dotenv').config();
 
+const dashboardRouter = require('./routes/dashboardRouter');
 const authRouter = require('./routes/authRouter');
 const uploadRouter = require('./routes/uploadRouter');
 const folderRouter = require('./routes/folderRouter');
@@ -77,16 +78,10 @@ app.use(passport.session());
 app.get('/', (req, res) => {
     res.redirect('/dashboard');
 });
-
-app.get('/dashboard', (req, res) => {
-    res.render('index', { isAuthenticated: req.isAuthenticated() });
-});
-
+app.use('/dashboard', dashboardRouter);
 app.use('/', authRouter);
-
 app.use('/upload', uploadRouter);
-
-app.use('/folder', folderRouter);
+app.use('/create-folder', folderRouter);
 
 
 // Start

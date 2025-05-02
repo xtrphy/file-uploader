@@ -1,17 +1,25 @@
 const express = require('express');
-const multer = require('multer');
-const path = require('node:path');
 const router = express.Router();
+const multer = require('multer');
+const prisma = require('../prisma/client');
+const upload = multer({ dest: 'uploads/' });
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, 'uploads/'),
-    filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname),
-});
+router.post('/', upload.single('file'), async (req, res) => {
+    const userId = req.user.id;
+    const folderId = req.body.folderId || null;
+    const file = req.file;
 
-const upload = multer({ storage });
+    const fileUrl = `/uploads/${file.filename}`;
 
-router.post('/', upload.single('uploaded_file'), (req, res) => {
-    console.log('File uploaded', req.file);
+    await prisma.file.create({
+        data: {
+            name: file.originalname,
+            url: fileUrl,
+            userId,
+            folderId,
+        },
+    });
+
     res.redirect('/dashboard');
 });
 

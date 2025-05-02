@@ -16,30 +16,38 @@
         <%- include ('./partials/header') %>
             <main>
                 <% if (isAuthenticated) { %>
-                    <h1 class="upload-file-title">
-                        Upload your first file!
-                    </h1>
+                    <% if (files.length===0) { %>
+                        <h1 class="upload-file-title">
+                            Upload your first file!
+                        </h1>
+                        <% } else { %>
+                            <div class="file-list">
+                                <% files.forEach(file=> { %>
+                                    <p>
+                                        <%= file.name %>
+                                    </p>
+                                    <% }); %>
+                            </div>
+                            <% } %>
 
-                    <div class="modal" id="folderModal">
-                        <div class="modal-content">
-                            <span class="close-btn">&times;</span>
-                            <form class="create-folder-form" action="/create-folder" method="POST">
-                                <h2>Create a Folder</h2>
-                                <input type="text" name="folderName" placeholder="Folder name" required />
-                                <button type="submit">Create Folder</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <% } else { %>
-                        <div class="get-started">
-                            <h1 class="title">The most <span>secure</span> data keeper</h1>
-                            <p class="subtitle">With Vaultix, users can securely upload, view and manage their files in
-                                an intuitive
-                                interface.</p>
-                            <a href="/login">Get started for free &rarr;</a>
-                        </div>
-                        <% } %>
+                                <div class="modal" id="folderModal">
+                                    <div class="modal-content">
+                                        <button class="close-btn">&times;</button>
+                                        <form action="/create-folder" method="POST">
+                                            <input type="text" name="name" placeholder="Folder name" required />
+                                            <button class="create-folder-btn" type="submit">Create</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <% } else { %>
+                                    <div class="get-started">
+                                        <h1 class="title">The most <span>secure</span> data keeper</h1>
+                                        <p class="subtitle">With Vaultix, users can securely upload, view and manage
+                                            their files in an
+                                            intuitive interface.</p>
+                                        <a href="/login">Get started for free &rarr;</a>
+                                    </div>
+                                    <% } %>
             </main>
 
             <%- include ('./partials/footer') %>

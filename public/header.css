@@ -72,7 +72,7 @@ nav {
 
 .links a,
 .upload-form,
-button {
+.open-modal-btn {
     border: none;
     background-color: var(--button-color);
     padding: 0.5rem 0.925rem;
@@ -95,7 +95,7 @@ button {
 }
 
 .links a:hover,
-button:hover {
+.open-modal-btn:hover {
     color: rgba(0, 0, 0, 0.5);
 }
 
