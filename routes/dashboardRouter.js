@@ -28,7 +28,6 @@ router.get('/', async (req, res) => {
             parentId: null,
         },
         include: {
-            subfolders: true,
             files: true,
         },
     });
@@ -38,7 +37,7 @@ router.get('/', async (req, res) => {
 
 // File routes
 router.post('/delete-file', async (req, res) => {
-    const { fileId } = req.body;
+    const { fileId, folderId } = req.body;
     const userId = req.user.id;
 
     const file = await prisma.file.findUnique({
@@ -53,11 +52,11 @@ router.post('/delete-file', async (req, res) => {
         where: { id: fileId }
     });
 
-    res.redirect('/dashboard');
+    res.redirect(folderId ? `/dashboard/folder/${folderId}` : '/dashboard');
 });
 
 router.post('/rename-file', async (req, res) => {
-    const { fileId, newName } = req.body;
+    const { fileId, folderId, newName } = req.body;
     const userId = req.user.id;
 
     const file = await prisma.file.findUnique({
@@ -73,12 +72,12 @@ router.post('/rename-file', async (req, res) => {
         data: { name: newName }
     });
 
-    res.redirect('/dashboard');
+    res.redirect(folderId ? `/dashboard/folder/${folderId}` : '/dashboard');
 });
 
 // Folder routes
 router.post('/delete-folder', async (req, res) => {
-    const { folderId } = req.body;
+    const { folderId, currentFolderId } = req.body;
     const userId = req.user.id;
 
     const folder = await prisma.folder.findUnique({
@@ -91,11 +90,16 @@ router.post('/delete-folder', async (req, res) => {
 
     await deleteFolderRecursive(prisma, folderId, userId);
 
-    res.redirect('/dashboard');
+    if (currentFolderId) {
+        res.redirect(`/dashboard/folder/${currentFolderId}`);
+    } else {
+        res.redirect('/dashboard');
+    }
+
 });
 
 router.post('/rename-folder', async (req, res) => {
-    const { folderId, newName } = req.body;
+    const { folderId, newName, currentFolderId } = req.body;
     const userId = req.user.id;
 
     const folder = await prisma.folder.findUnique({
@@ -111,7 +115,27 @@ router.post('/rename-folder', async (req, res) => {
         data: { name: newName }
     });
 
-    res.redirect('/dashboard');
+    if (currentFolderId) {
+        res.redirect(`/dashboard/folder/${currentFolderId}`);
+    } else {
+        res.redirect('/dashboard');
+    }
+});
+
+router.get('/folder/:folderId', async (req, res) => {
+    const { folderId } = req.params;
+    const userId = req.user.id;
+
+    const folder = await prisma.folder.findUnique({
+        where: { id: folderId },
+        include: {
+            subfolders: true,
+            files: true,
+        },
+    });
+
+    if (!folder) return res.status(404).send('Folder not found');
+    res.render('folderPage', { isAuthenticated: req.isAuthenticated(), folder });
 });
 
 module.exports = router;

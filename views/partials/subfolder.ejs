@@ -1,25 +1,27 @@
 <div class="folder-card">
-    <button class="options-btn" data-id="<%= folder.id %>">⋯</button>
-    <a href="/dashboard/folder/<%= folder.id %>" class="select-folder" style="text-decoration: none; color: black;">
+    <button class="options-btn" data-id="<%= subfolder.id %>">⋯</button>
+    <a href="/dashboard/folder/<%= subfolder.id %>" class="select-folder" style="text-decoration: none; color: black;">
         <div class="folder-header">
             <div class="folder-icon"></div>
         </div>
 
         <div class="folder-name">
-            <%= folder.name %>
+            <%= subfolder.name %>
         </div>
     </a>
 
-    <div class="options-menu hidden" id="menu-<%= folder.id %>">
+    <div class="options-menu hidden" id="menu-<%= subfolder.id %>">
         <div class="form-container">
             <form class="rename-form" action="/dashboard/rename-folder" method="post">
-                <input type="hidden" name="folderId" value="<%= folder.id %>">
+                <input type="hidden" name="folderId" value="<%= subfolder.id %>">
+                <input type="hidden" name="currentFolderId" value="<%= subfolder.parentId %>">
                 <input class="rename-input" type="text" name="newName" placeholder="New Name" required>
                 <button type="submit">Rename</button>
             </form>
 
             <form class="delete-form" action="/dashboard/delete-folder" method="post">
-                <input type="hidden" name="folderId" value="<%= folder.id %>">
+                <input type="hidden" name="currentFolderId" value="<%= subfolder.parentId %>">
+                <input type="hidden" name="folderId" value="<%= subfolder.id %>">
                 <button type="submit">Delete</button>
             </form>
         </div>

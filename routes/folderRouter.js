@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
         },
     });
 
-    res.redirect('/dashboard');
+    res.redirect(parentId ? `/dashboard/folder/${parentId}` : '/dashboard');
 });
 
 module.exports = router;

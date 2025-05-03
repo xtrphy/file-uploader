@@ -20,7 +20,7 @@ router.post('/', upload.single('file'), async (req, res) => {
         },
     });
 
-    res.redirect('/dashboard');
+    res.redirect(folderId ? `/dashboard/folder/${folderId}` : '/dashboard');
 });
 
 module.exports = router;
