@@ -1,0 +1,85 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    width: 300px;
+    height: 200px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal-content form input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.modal.show .modal-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.close-btn {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: white;
+    font-size: 2rem;
+}
+
+.create-folder-btn {
+    border: none;
+    background-color: var(--button-color);
+    padding: 0.5rem 0.925rem;
+    border-radius: 1rem;
+    color: black;
+    font-size: 1.15rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.create-folder-btn:hover {
+    color: rgba(0, 0, 0, 0.5);
+}

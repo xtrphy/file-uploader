@@ -1,0 +1,97 @@
+.folder-card {
+    position: relative;
+    width: 120px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+}
+
+.folder-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.folder-icon {
+    width: 40px;
+    height: 40px;
+    margin: 12px auto;
+    background-color: #fde4cf;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.folder-icon::before {
+    content: '📁';
+    font-size: 20px;
+}
+
+.folder-name {
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.options-menu {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    z-index: 100;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: default;
+}
+
+.hidden {
+    display: none;
+}
+
+.rename-form button {
+    margin-top: 10px;
+    border: none;
+    background-color: #fff;
+    color: black;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.rename-form button:hover {
+    color: #8b8b8b;
+}
+
+.rename-input {
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+}
+
+.rename-input:focus {
+    outline: none;
+    border-color: #537bfb;
+    box-shadow: 0 0 0 3px rgba(83, 123, 251, 0.3);
+}
+
+.delete-form {
+    margin-top: 10px;
+}
+
+.delete-form button {
+    background-color: red;
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-form button:hover {
+    background-color: rgb(185, 0, 0);
+}
