@@ -1,12 +1,14 @@
 <div class="file-card">
     <button class="options-btn" data-id="<%= file.id %>">⋯</button>
-    <div class="file-header">
-        <div class="file-icon"></div>
-    </div>
+    <a href="/dashboard/file/<%= file.id %>" class="select-file" style="text-decoration: none; color: black;">
+        <div class="file-header">
+            <div class="file-icon"></div>
+        </div>
 
-    <div class="file-name">
-        <%= file.name %>
-    </div>
+        <div class="file-name">
+            <%= file.name %>
+        </div>
+    </a>
 
     <div class="options-menu hidden" id="menu-<%= file.id %>">
         <div class="form-container">

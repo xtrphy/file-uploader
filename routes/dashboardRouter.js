@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
         },
     });
 
-    res.render('index', { isAuthenticated: req.isAuthenticated(), files, folders });
+    res.render('index', { isAuthenticated: req.isAuthenticated(), files, folders, filePage: false });
 });
 
 // File routes
@@ -124,7 +124,6 @@ router.post('/rename-folder', async (req, res) => {
 
 router.get('/folder/:folderId', async (req, res) => {
     const { folderId } = req.params;
-    const userId = req.user.id;
 
     const folder = await prisma.folder.findUnique({
         where: { id: folderId },
@@ -135,7 +134,20 @@ router.get('/folder/:folderId', async (req, res) => {
     });
 
     if (!folder) return res.status(404).send('Folder not found');
-    res.render('folderPage', { isAuthenticated: req.isAuthenticated(), folder });
+
+    res.render('folderPage', { isAuthenticated: req.isAuthenticated(), folder, filePage: false });
+});
+
+router.get('/file/:fileId', async (req, res) => {
+    const { fileId } = req.params;
+
+    const file = await prisma.file.findUnique({
+        where: { id: fileId },
+    });
+
+    if (!file) return res.status(404).send('File not found');
+
+    res.render('filePage', { isAuthenticated: req.isAuthenticated(), file });
 });
 
 module.exports = router;

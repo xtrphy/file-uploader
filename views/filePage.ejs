@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/header.css">
+    <link rel="stylesheet" href="/footer.css">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/filePage.css">
+    <link rel="stylesheet" href="/file.css">
+    <link rel="stylesheet" href="/folder.css">
+    <link rel="stylesheet" href="/modal.css">
+    <title>
+        <%= file.name %>
+    </title>
+</head>
+
+<body>
+    <div class="window">
+        <%- include('partials/header', { filePage: true }) %>
+            <main>
+                <h1 class="file-name-title">
+                    <%= file.name %>
+                </h1>
+
+                <div class="storage">
+                    <p>
+                        Name: <%= file.name %>
+                    </p>
+                    <p>
+                        Uploaded at: <%= file.createdAt %>
+                    </p>
+                </div>
+
+            </main>
+            <%- include('partials/footer') %>
+    </div>
+
+    <script src="https://kit.fontawesome.com/3130acdd01.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+.file-name-title {
+    margin-bottom: 1rem;
+}
+
+.storage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

@@ -16,7 +16,7 @@
 
 <body>
     <div class="window">
-        <%- include ('./partials/header') %>
+        <%- include ('./partials/header', { filePage: false }) %>
             <main>
                 <% if (isAuthenticated) { %>
                     <% if (files.length===0 && folders.length===0) { %>
