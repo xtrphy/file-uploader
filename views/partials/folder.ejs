@@ -1,0 +1,25 @@
+<div class="folder-card">
+    <button class="options-btn" data-id="<%= folder.id %>">⋯</button>
+    <div class="folder-header">
+        <div class="folder-icon"></div>
+    </div>
+
+    <div class="folder-name">
+        <%= folder.name %>
+    </div>
+
+    <div class="options-menu hidden" id="menu-<%= folder.id %>">
+        <div class="form-container">
+            <form class="rename-form" action="/dashboard/rename-folder" method="post">
+                <input type="hidden" name="folderId" value="<%= folder.id %>">
+                <input class="rename-input" type="text" name="newName" placeholder="New Name" required>
+                <button type="submit">Rename</button>
+            </form>
+
+            <form class="delete-form" action="/dashboard/delete-folder" method="post">
+                <input type="hidden" name="folderId" value="<%= folder.id %>">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>

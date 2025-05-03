@@ -16,17 +16,18 @@
         <%- include ('./partials/header') %>
             <main>
                 <% if (isAuthenticated) { %>
-                    <% if (files.length===0) { %>
+                    <% if (files.length===0 && folders.length===0) { %>
                         <h1 class="upload-file-title">
                             Upload your first file!
                         </h1>
                         <% } else { %>
-                            <div class="file-list">
+                            <div class="storage">
                                 <% files.forEach(file=> { %>
-                                    <p class="file">
-                                        <%= file.name %>
-                                    </p>
-                                    <% }); %>
+                                    <%- include ('partials/file', { file: file }) %>
+                                        <% }); %>
+                                            <% folders.forEach(folder=> { %>
+                                                <%- include ('partials/folder', { folder: folder }) %>
+                                                    <% }); %>
                             </div>
                             <% } %>
 
@@ -41,8 +42,10 @@
                                 </div>
                                 <% } else { %>
                                     <div class="get-started">
-                                        <h1 class="title">The most <span>secure</span> data keeper</h1>
-                                        <p class="subtitle">With Vaultix, users can securely upload, view and manage
+                                        <h1 class="title">The most <span>secure</span> data
+                                            keeper</h1>
+                                        <p class="subtitle">With Vaultix, users can securely
+                                            upload, view and manage
                                             their files in an
                                             intuitive interface.</p>
                                         <a href="/login">Get started for free &rarr;</a>
