@@ -50,3 +50,15 @@ if (closeBtn) {
         modal.classList.remove('show');
     });
 }
+
+// Copy to clipboard function
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text)
+        .then(() => {
+            alert('Copied!');
+        })
+        .catch(err => {
+            console.error('Error copying', err);
+        });
+}

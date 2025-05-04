@@ -1,29 +1,33 @@
 <div class="file-card">
-    <button class="options-btn" data-id="<%= file.id %>">⋯</button>
-    <a href="/dashboard/file/<%= file.id %>" class="select-file" style="text-decoration: none; color: black;">
-        <div class="file-header">
-            <div class="file-icon"></div>
-        </div>
+    <% if (isAuthenticated) { %>
+        <button class="options-btn" data-id="<%= file.id %>">⋯</button>
+        <% } %>
+            <a href="/dashboard/file/<%= file.id %>" class="select-file" style="text-decoration: none; color: black;">
+                <div class="file-header">
+                    <div class="file-icon"></div>
+                </div>
 
-        <div class="file-name">
-            <%= file.name %>
-        </div>
-    </a>
+                <div class="file-name">
+                    <%= file.name %>
+                </div>
+            </a>
 
-    <div class="options-menu hidden" id="menu-<%= file.id %>">
-        <div class="form-container">
-            <form class="rename-form" action="/dashboard/rename-file" method="post">
-                <input type="hidden" name="fileId" value="<%= file.id %>">
-                <input type="hidden" name="folderId" value="<%= folder ? folder.id : null %>">
-                <input class="rename-input" type="text" name="newName" placeholder="New Name" required>
-                <button type="submit">Rename</button>
-            </form>
+            <% if (isAuthenticated) { %>
+                <div class="options-menu hidden" id="menu-<%= file.id %>">
+                    <div class="form-container">
+                        <form class="rename-form" action="/dashboard/rename-file" method="post">
+                            <input type="hidden" name="fileId" value="<%= file.id %>">
+                            <input type="hidden" name="folderId" value="<%= folder ? folder.id : null %>">
+                            <input class="rename-input" type="text" name="newName" placeholder="New Name" required>
+                            <button type="submit">Rename</button>
+                        </form>
 
-            <form class="delete-form" action="/dashboard/delete-file" method="post">
-                <input type="hidden" name="fileId" value="<%= file.id %>">
-                <input type="hidden" name="folderId" value="<%= folder ? folder.id : null %>">
-                <button type="submit">Delete</button>
-            </form>
-        </div>
-    </div>
+                        <form class="delete-form" action="/dashboard/delete-file" method="post">
+                            <input type="hidden" name="fileId" value="<%= file.id %>">
+                            <input type="hidden" name="folderId" value="<%= folder ? folder.id : null %>">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                <% } %>
 </div>

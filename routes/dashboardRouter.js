@@ -22,6 +22,8 @@ router.get('/', async (req, res) => {
         },
     });
 
+    const baseUrl = process.env.BASE_URL;
+
     const folders = await prisma.folder.findMany({
         where: {
             userId,
@@ -32,7 +34,12 @@ router.get('/', async (req, res) => {
         },
     });
 
-    res.render('index', { isAuthenticated: req.isAuthenticated(), files, folders, filePage: false });
+    const foldersWithLinks = folders.map(folder => ({
+        ...folder,
+        url: `${baseUrl}/dashboard/folder/${folder.id}`,
+    }));
+
+    res.render('index', { isAuthenticated: req.isAuthenticated(), files, folders: foldersWithLinks, filePage: false });
 });
 
 // File routes
