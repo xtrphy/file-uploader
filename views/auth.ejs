@@ -18,11 +18,22 @@
             <h2>Log In</h2>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" required />
+                <input type="text" name="username" id="username" required
+                    value="<%= oldInput.username ? oldInput.username : '' %>" />
+                <% if (errors && errors.username) { %>
+                    <div style="color: red;">
+                        <%= errors.username %>
+                    </div>
+                    <% } %>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required />
+                <% if (errors && errors.password) { %>
+                    <div style="color: red;">
+                        <%= errors.password %>
+                    </div>
+                    <% } %>
             </div>
             <button type="submit" class="auth-button">OK</button>
             <a class="auth-link" href="/sign-up">Don't have an account?</a>
@@ -32,15 +43,31 @@
                 <h2>Sign Up</h2>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" name="username" id="username" required />
+                    <input type="text" name="username" id="username" required
+                        value="<%= oldInput.username ? oldInput.username : '' %>" />
+                    <% if (errors && errors.username) { %>
+                        <div style="color: red;">
+                            <%= errors.username %>
+                        </div>
+                        <% } %>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" required />
+                    <% if (errors && errors.password) { %>
+                        <div style="color: red;">
+                            <%= errors.password %>
+                        </div>
+                        <% } %>
                 </div>
                 <div class="form-group">
                     <label for="confirmPassword">Confirm password</label>
                     <input type="password" name="confirmPassword" id="confirmPassword" required />
+                    <% if (errors.confirmPassword) { %>
+                        <div style="color:red;">
+                            <%= errors.confirmPassword %>
+                        </div>
+                        <% } %>
                 </div>
                 <button type="submit" class="auth-button">Sign Up</button>
                 <a class="auth-link" href="/login">Already have an account?</a>
