@@ -7,3 +7,7 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.storage-image {
+    max-width: 200px;
+}

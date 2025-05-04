@@ -27,11 +27,16 @@
 
                 <div class="storage">
                     <p>
-                        Name: <%= file.name %>
-                    </p>
-                    <p>
                         Uploaded at: <%= file.createdAt %>
                     </p>
+                    <% if (file && (file.url.endsWith('.jpg') || file.url.endsWith('.png') ||
+                        file.url.endsWith('.jpeg'))) { %>
+                        <img class="storage-image" src="<%= file.url %>" alt="<%= file.name %>">
+                        <a href="<%= file.url %>">Download</a>
+                        <% } else { %>
+                            <a class="storage-file" href="<%= file.url.replace('/upload', '/upload/fl_attachment/') %>"
+                                target="_blank">Download</a>
+                            <% } %>
                 </div>
 
             </main>

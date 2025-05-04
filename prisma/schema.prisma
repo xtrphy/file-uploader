@@ -44,6 +44,7 @@ model File {
     id        String   @id @default(uuid())
     name      String
     url       String
+    fileType  String?
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 

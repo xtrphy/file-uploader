@@ -27,18 +27,11 @@
                             <div class="storage">
                                 <% folders.forEach(folder=> { %>
                                     <%- include ('partials/folder', { folder: folder }) %>
+                                        <% }); %>
 
-                                        <% if (folder.files && folder.files.length> 0) { %>
-                                            <% folder.files.forEach(file=> { %>
-                                                <%- include('partials/file', { file: file, folder: folder }) %>
+                                            <% files.forEach(file=> { %>
+                                                <%- include ('partials/file', { file: file, folder: null }) %>
                                                     <% }); %>
-                                                        <% } %>
-                                                            <% }); %>
-
-                                                                <% files.forEach(file=> { %>
-                                                                    <%- include ('partials/file', { file: file, folder:
-                                                                        null }) %>
-                                                                        <% }); %>
                             </div>
                             <% } %>
 
