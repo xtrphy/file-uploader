@@ -108,3 +108,11 @@ body {
 .cancel:hover {
     background-color: #dbdbdb
 }
+
+/* Media queries */
+
+@media only screen and (max-width: 390px) and (min-width: 390px) and (orientation: portrait) {
+    .auth-container {
+        margin: 1rem;
+    }
+}
