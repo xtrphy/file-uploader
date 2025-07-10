@@ -8,7 +8,8 @@ Live demo temporarily unavailable :(
 
 #### Login page
 
-![Login page screenshot](https://github.com/user-attachments/assets/5bcaf4a4-4647-4719-99ee-00f2edc963bf)
+![Login page screenshot](https://github.com/user-attachments/assets/e7ce48cc-3c9f-497f-9d7c-ffc20d0a1578)
+
 
 #### Dashboard page
 
