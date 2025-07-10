@@ -12,7 +12,7 @@ Live demo temporarily unavailable :(
 
 #### Dashboard page
 
-![Dashboard page screenshot](https://github.com/user-attachments/assets/0feb07ab-b9d4-4a1b-8952-200df1264a7f)
+![Dashboard page screenshot](https://github.com/user-attachments/assets/af5e17d0-79c5-4b8f-8fbb-7dd902de1ba1)
 
 
 ## Functional
